@@ -1,0 +1,563 @@
+.page {
+
+    &__main-slider {
+    }
+
+    &__advantages {
+    }
+
+    &__products {
+    }
+}
+
+//----- Main slider --------------------------------------------------------------------------
+
+.main-slider {
+    background-color: #FCF8F3;
+
+    &__container {
+        position: relative;
+
+        @media (min-width: $tablet) {
+            &::before {
+                content: "";
+                background-color: #F9F1E7;
+                position: absolute;
+                top: 0;
+                right: 375px;
+                width: 100vw;
+                height: 100%;
+            }
+        }
+    }
+
+    &__body {
+        padding: 50px 0 0 0;
+
+        @media (min-width: $mobile) {
+            padding: 80px 0 0 0;
+        }
+
+        @media (min-width: $tablet) {
+            display: flex;
+            padding: 140px 0 0 0;
+        }
+
+        position: relative;
+        z-index: 2;
+    }
+
+    &__content {
+        flex: 0 0 math.div(495px, $maxContentWidth) * 100%;
+        align-self: flex-start;
+        position: relative;
+        margin: 0 -15px;
+
+        @media (min-width: $tablet) {
+            margin: 0;
+            @include adaptiveValue("margin-bottom", 15px, 80px);
+        }
+    }
+
+    &__slider {
+        flex: 1 1 auto;
+        min-width: 0;
+        align-self: flex-end;
+
+        @media (min-width: $tablet) {
+            padding-left: 32px;
+        }
+    }
+
+    &__button {
+        display: inline-flex;
+
+        @media (min-width: $tablet) {
+            display: none;
+        }
+    }
+}
+
+.content-main {
+    z-index: 5;
+    padding-left: 15px;
+    padding-right: 15px;
+    @include adaptiveValue("padding-top", 15px, 60px);
+    @include adaptiveValue("padding-bottom", 15px, 60px);
+    background-color: rgba(255, 255, 255, 0.9);
+
+    @media (min-width: $tablet) {
+        @include adaptiveValue("padding", 1px, 60px);
+    }
+
+    &__title {
+
+        &:not(:last-child) {
+            @include adaptiveValue("margin-bottom", 8px, 16px);
+        }
+
+        line-height: 1.2;
+        @include adaptiveValue("font-size", 24px, 56px);
+        font-weight: 700;
+    }
+
+    &__text {
+
+        @media (min-width: $tablet) {
+
+            &:not(:last-child) {
+                @include adaptiveValue("margin-bottom", 38px, 48px);
+            }
+        }
+
+        @include adaptiveValue("font-size", 16px, 20px);
+        color: $textLightColor;
+    }
+
+    &__button {
+        display: none;
+
+        @media (min-width: $tablet) {
+            display: inline-flex;
+        }
+    }
+}
+
+.slider-main {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: stretch;
+
+    @media (min-width: $tablet) {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    &__controls {
+        margin: 10px 0 20px;
+
+        @media (min-width: $tablet) {
+            margin: 0 0 20px;
+        }
+    }
+
+    &__body {
+        overflow: visible;
+        margin: 0 -15px;
+
+        @media (min-width: $tablet) {
+            @include adaptiveValue("width", 290px, 935px);
+            margin: 0;
+        }
+    }
+
+    &__slider-wrapper {
+    }
+
+    &__slide {
+        position: relative;
+    }
+
+    &__image {
+        position: relative;
+        padding-bottom: 60%;
+    }
+
+    &__image-photo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        min-width: 295px;
+        max-height: 300px;
+        overflow: auto;
+        @include adaptiveValue("padding", 15px, 24px);
+        background-color: rgba(255, 255, 255, 0.9);
+
+        @media (min-width: $mobile) {
+            position: absolute;
+            @include adaptiveValue("bottom", 0px, 40px);
+            @include adaptiveValue("right", 0px, 40px);
+            max-width: 295px;
+        }
+    }
+
+    &__title {
+
+        &:not(:last-child){
+            @include adaptiveValue("margin-bottom", 1px, 4px);
+        }
+        line-height: 1.2;
+        @include adaptiveValue("font-size", 22px, 28px);
+        font-weight: 600;
+    }
+
+    &__text {
+
+        &:not(:last-child) {
+            @include adaptiveValue("margin-bottom", 4px, 8px);
+        }
+        color: $textDarkColor;
+    }
+
+    &__bottom-line {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__price {
+        margin-right: 10px;
+        @include adaptiveValue("font-size", 16px, 20px);
+        font-weight: 600;
+    }
+
+    &__arrow {
+        display: block;
+        flex: 0 0 24px;
+        height: 24px;
+        fill: #000;
+    }
+}
+
+.controls-m-s {
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+
+    &__dots {
+        flex: 1 1 auto;
+        justify-content: center;
+
+        @media (min-width: $tablet) {
+            justify-content: flex-start;
+            padding-right: 20px;
+        }
+    }
+
+    &__arrows {
+        display: none;
+
+        @media (min-width: $tablet) {
+            display: grid;
+        }
+    }
+}
+
+.slider-arrows {
+    grid-template-columns: repeat(2, 48px);
+    column-gap: 8px;
+
+    &__btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 48px;
+        border-radius: 50%;
+        background-color: rgba(232, 159, 113, 0.4);
+        stroke: $primaryColor;
+        transition: background-color 0.3s ease 0s,
+                    stroke 0.3s ease 0s;
+
+        @media (any-hover: hover) {
+            &:hover {
+                background-color: $primaryColor;
+                stroke: #FFF;
+            }
+        }
+
+        &_prev {
+        }
+
+        &_next {
+            transform: rotate(180deg);
+        }
+    }
+
+    &__icon {
+        display: block;
+        width: 24px;
+        height: 24px;
+        fill: transparent;
+        pointer-events: none;
+    }
+}
+
+//-------------------------------------------------------------------------------------------
+
+//----- Advantages --------------------------------------------------------------------------
+
+.advantages {
+    @include adaptiveValue("padding-top", 30px, 90px);
+    @include adaptiveValue("padding-bottom", 30px, 90px);
+
+    &__container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__item {
+        display: inline-grid;
+        grid-template: auto auto / auto 1fr;
+
+        @media (min-width: $mobile) {
+            grid-template: auto auto / 85px 1fr; 
+        }
+
+        min-width: 280px;
+        
+        @media (min-width: $tablet) {
+            min-width: 0px;
+        }
+        padding: 15px 0;
+    }
+
+    &__image {
+        grid-row: span 2;
+        align-self: center;
+        text-align: center; 
+        padding-right: 15px;
+        
+        @media (min-width: $mobile) {
+            padding: 0;
+        }
+    }
+
+    &__icon {
+        vertical-align: middle;
+    }
+
+    &__title {
+        margin-bottom: 2px;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    &__text {
+        color: $textLightColor;
+    }
+}
+
+//-------------------------------------------------------------------------------------------
+
+//----- Products --------------------------------------------------------------------------
+
+.products {
+    @include adaptiveValue("padding-bottom", 30px, 44px);
+
+    &__container {
+    }
+
+    &__title {
+        @include adaptiveValue("margin-bottom", 22px, 32px);
+    }
+
+    &__items {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
+        gap: 32px;
+    }
+
+    &__item {
+        position: relative;
+    }
+
+    &__footer {
+        padding-top: 32px;
+        text-align: center;
+    }
+
+    &__more {
+        display: inline-flex;
+        border: 1px solid $primaryColor;
+        min-width: 245px;
+
+        &_hold {
+            opacity: 0.5;
+            cursor: default;
+        }
+    }
+}
+
+.item-product {
+    display: flex;
+    flex-direction: column;
+    background-color: #F4F5F7;
+
+    &__labels {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        @include adaptiveValue("top", 10px, 24px);
+        @include adaptiveValue("right", 10px, 24px);
+    }
+
+    &__label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 48px;
+        flex: 0 0 48px;
+        border-radius: 50%;
+        font-weight: 600;
+        color: #FFF;
+
+        &:not(:last-child) {
+            margin-bottom: 10px;
+        }
+
+        &_type_sale {
+            background-color: $discountColor;
+        }
+
+        &_type_new {
+            background-color: $newColor;
+        }
+    }
+
+    &__image {
+        position: relative;
+        padding-bottom: calc(300px / 285px * 100%);
+    }
+
+    &__photo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+        padding: 16px 16px 30px;
+    }
+
+    &__content {
+        flex: 1 1 auto;
+    }
+
+    &__title {
+        @include adaptiveValue("margin-bottom", 6px, 8px);
+        line-height: 1.2;
+        @include adaptiveValue("font-size", 20px, 24px);
+        font-weight: 600;
+    }
+
+    &__text {
+        @include adaptiveValue("margin-bottom", 6px, 8px);
+        color: $textLightColor;
+    }
+
+    &__prices {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    &__price {
+        @include adaptiveValue("font-size", 16px, 20px);
+        font-weight: 600;
+
+        &_old {
+            margin-left: 16px;
+            @include adaptiveValue("font-size", 14px, 16px);
+            font-weight: 400;
+            color: $textLightColor;
+            text-decoration: line-through;
+        }
+    }
+
+    &__actions {
+
+        @media (any-hover: hover) {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+}
+.actions-product {
+
+    @media (any-hover: none) {
+        padding-top: 15px;
+    }
+
+    @media (any-hover: hover) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        background-color: rgba(58, 58, 58, 0.7);
+        transition: opacity 0.3s ease 0s,
+                    z-index 0.3s ease 0s;
+
+        .item-product:hover & {
+            opacity: 1;
+            z-index: 3;
+        }
+    }
+
+    &__body {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    &__button {
+        flex: 1 1 100%;
+
+        &:not(:last-child) {
+            margin-bottom: 24px;
+        }
+
+        &_hold {
+            opacity: 0.5;
+            cursor: default;
+        }
+    }
+
+    &__link {
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+        color: $mainColor;
+        stroke: $mainColor;
+        transition: stroke 0.3s ease 0s,
+                    color 0.3s ease 0s;
+
+        @media (any-hover: hover) {
+            color: #FFF;
+            stroke: #FFF;
+
+            &:hover {
+                color: $primaryColor;
+                stroke: $primaryColor;
+            }
+        }
+    }
+
+    &__icon {
+        margin-right: 10px;
+        width: 24px;
+        height: 24px;
+        fill: transparent;
+    }
+}
+
+//-------------------------------------------------------------------------------------------

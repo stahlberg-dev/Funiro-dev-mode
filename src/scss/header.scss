@@ -1,0 +1,650 @@
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 10px;
+
+    @media (min-width: $mobile) {
+        min-height: 40px;
+    }
+
+    &__wrapper {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        transition: background-color 0.3s ease 0s;
+
+        .header_scroll & {
+            background-color: rgba(252, 248, 243, 0.95);
+        }
+    }
+
+    &__container {
+    }
+
+    &__body {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 60px;
+
+        @media (min-width: $mobile) {
+            min-height: 80px;
+
+            .header_scroll & {
+                min-height: 60px;
+            }
+        }
+
+        @media (min-width: $tablet) {
+            min-height: 125px;
+
+            .header_scroll & {
+                min-height: 70px;
+            }
+        }
+        padding: 5px 0;
+        transition: min-height 0.3s ease 0s;
+    }
+
+    &__main {
+        display: flex;
+        align-items: center;
+        flex: 1 1 auto;
+
+        @media (min-width: $tablet) {
+            flex: 0 0 math.div(495px, $maxContentWidth) * 100%;
+        }
+    }
+
+    &__logo {
+        position: relative;
+        z-index: 5;
+        line-height: math.div(29px, 24px);
+        font-size: 24px;
+        font-weight: 700;
+        color: #000;
+    }
+
+    &__menu {
+        flex: 0 1 420px;
+    }
+
+    &__search {
+        flex: 0 0 auto;
+
+        @media (min-width: $tablet) {
+            flex: 1 1 auto;
+        }
+        @include adaptiveValue("margin-right", 15px, 32px);
+    }
+
+    &__actions {
+        position: relative;
+        z-index: 5;
+        @include adaptiveValue("margin-right", 15px, 32px);
+
+        @media (min-width: $mobile) {
+            margin-right: 0;
+        }
+    }
+}
+
+.menu {
+
+    &__body {
+        position: fixed;
+        top: 0;
+        right: 100%;
+        min-width: $minWidth;
+        width: 100%;
+        height: 100%;
+        padding: 70px 15px 30px;
+        overflow: auto;
+        background-color: #FCF8F3;
+        transition: right 0.3s ease 0s;
+
+        &::before {
+            content:"";
+            position: fixed;
+            width: 100%;
+            height: 50px;
+            top: 0;
+            right: 100%;
+            background-color: #FCF8F3;
+            transition: right 0.3s ease 0s;
+            z-index: 2;
+        }
+
+        &_active {
+            right: 0;
+            &::before {
+                right: 0;
+            }
+        }
+
+        @media (min-width: $mobile) {
+            position: static;
+            padding: 0;
+            overflow: visible;
+            background-color: transparent;
+
+            &:before {
+                display: none;
+            }
+        }
+    }
+
+    &__list {
+        @media (min-width: $mobile) {
+            display: flex; 
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
+    }
+
+    &__item {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin: 20px 0 0;
+        padding: 5px 0;
+
+        @media (min-width: $mobile) {
+            margin: 0 3px;
+        }
+    }
+
+    &__link {
+        margin-right: 8px;
+        font-size: 24px;
+        font-weight: 600;
+        transition: color 0.3s ease 0s;
+
+        @media (any-hover: hover) {
+
+            .menu__item:hover & {
+                color: $primaryColor;
+            }
+        } 
+
+        @media (any-hover: none) {
+
+            .menu__item_active & {
+                color: $primaryColor;
+            }
+        }
+
+        @media (min-width: $mobile) {
+            font-size: 16px;
+            font-weight: 500;
+        }
+    }
+
+    &__arrow {
+        flex: 0 0 36px;
+        height: 36px;
+        background-color: transparent;
+        fill: $mainColor;
+        transition: transform 0.3s ease 0s,
+                    fill 0.3s ease 0s;
+
+        @media (any-hover: hover) {
+
+            .menu__item:hover & {
+                fill: $primaryColor;
+                transform: rotate(180deg);
+            }
+        } 
+
+        @media (any-hover: none) {
+
+            .menu__item_active & {
+                fill: $primaryColor;
+                transform: rotate(180deg);
+            }
+        } 
+
+        @media (min-width: $mobile) {
+            flex: 0 0 20px;
+            height: 20px;
+        }
+    }
+
+    &__arrow-icon {
+        width: 36px;
+        height: 36px;
+
+        @media (min-width: $mobile) {
+            width: 20px;
+            height: 20px;
+        }
+        pointer-events: none;
+    }
+
+    &__submenu {
+        position: relative;
+        flex: 1 1 100%;
+        margin: 0 -15px;
+        padding: 0 15px;
+        background-color: $primaryColor;
+        max-height: 0;
+        overflow: hidden;
+        visibility: hidden;
+        pointer-events: none;
+        transition: all 0.3s ease 0s;
+        
+        @media (any-hover: hover) {            
+            .menu__item:hover & {
+                max-height: 300px;
+                padding: 15px;
+                visibility: visible;
+                pointer-events: auto;
+            }
+        }
+        
+        @media (any-hover: none) {            
+            .menu__item_active & {
+                max-height: 300px;
+                padding: 15px;
+                visibility: visible;
+                pointer-events: auto;
+            }
+        }
+
+        @media (min-width: $mobile) {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 130px;
+            max-height: 300px;
+            margin: 0;
+            padding: 15px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 10;
+            transform: translate(0px, 15px);
+        }
+
+        @media (min-width: $mobile) and (any-hover: hover) {
+
+            .menu__item:hover & {
+                opacity: 1;
+                visibility: visible;
+                transform: translate(0px, 0px);
+                pointer-events: auto;
+            }
+        }
+
+        @media (min-width: $mobile) and (any-hover: none) {
+
+            .menu__item_active & {
+                opacity: 1;
+                visibility: visible;
+                transform: translate(0px, 0px);
+                pointer-events: auto;
+            }
+        }
+    }
+
+    &__sub-item {
+        &:not(:last-child) {
+            margin-bottom: 10px;
+        }
+
+        @media (min-width: $mobile) {
+            &:not(:last-child) {
+                margin-bottom: 5px;
+            }
+        }
+    }
+
+    &__sub-link {
+        line-height: 1.2;
+        font-size: 20px;
+
+        @media (min-width: $mobile) {
+            font-size: 16px;
+        }
+        color: #FFF;
+        transition: color 0.3s ease 0s;
+
+        @media (any-hover: hover) {
+            &:hover {
+                color: $textLightColor;
+            }
+        }
+    }
+}
+
+.search-form {
+
+    &__icon {
+        position: relative;
+        z-index: 5;
+        background-color: transparent;
+        fill: transparent;
+        stroke: #262F56;
+        transition: stroke 0.3s ease 0s;
+
+        @media (any-hover: hover) {
+            &:hover {
+                stroke: $primaryColor;
+            }
+        }
+
+        @media (min-width: $tablet) {
+            display: none;
+        }
+    }
+
+    &__magnifier-icon {
+        display: block;
+        width: 20px;
+        height: 20px;
+        pointer-events: none;
+    }
+
+    &__item {
+        position: absolute;
+        top: -100%;
+        left: 0;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        background-color: #FFF;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        z-index: 5;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease 0s;
+
+        .search-form_active & {
+            top: 100%;
+            visibility: visible;
+            opacity: 1;
+        }    
+
+        @media (min-width: $tablet) {
+            position: static;
+            max-width: 475px;
+            box-shadow: none;
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    &__btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 0 0 45px;
+        height: 45px;
+        background-color: transparent;
+        stroke: $primaryColor;
+        fill: transparent;
+
+        @media (min-width: $tablet) {
+            stroke: #333;
+        }
+    }
+
+    &__input {
+        width: 100%;
+        padding-right: 20px;
+        font-family: $fontFamily;
+        font-size: 14px;
+        font-weight: 400;
+        color: $textDarkColor;
+    }
+}
+
+.actions {
+    display: grid;
+    grid-template-columns: auto;
+    grid-auto-flow: column;
+    align-items: center;
+    @include adaptiveValue("gap", 15px, 32px);
+
+    &__item {
+
+    }
+}
+
+.favourite {
+    stroke: #262F56;
+    fill: transparent;
+    transition: stroke 0.3s ease 0s;
+
+    @media (any-hover: hover) {
+        &:hover {
+            stroke: $primaryColor;
+        }
+    }
+
+    &__heart-icon {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+.cart {
+
+    &__icon {
+        display: block;
+        position: relative;
+        stroke: #262F56;
+        fill: transparent;
+        transition: stroke 0.3s ease 0s;
+
+        @media (any-hover: hover) {
+            &:hover {
+                stroke: $primaryColor;
+            }
+        }
+    }
+
+    &__products-num {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        top: -10px;
+        right: -10px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $primaryColor;
+        color: #FFF;
+        font-size: 12px;
+    }
+
+    &__handcart-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    &__body {
+        position: fixed;
+        top: 50px;
+        right: 0;
+        left: 0;
+        min-width: 320px;
+        width: 100%;
+        z-index: 5;
+        padding: 15px;
+        background-color: #F4F5F7;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.4); 
+        opacity: 0;
+        visibility: hidden;
+        transform: translate(0px, 20px);
+        transition: all 0.3s ease 0s;
+        
+        @media (min-width: $mobile) {
+            position: absolute;
+            left: auto;
+            width: 320px;
+        }
+
+        @media (min-width: $tablet) {
+            top: 60px;
+        }
+
+        .cart_active & {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(0px, 0px);
+        }
+    }
+
+    &__list {
+    }
+}
+
+.purchase-list {
+    overflow: auto;
+    max-height: 200px;
+
+    &__item {
+        display: flex;
+        align-items: flex-start;
+
+        &:not(:last-child) {
+            margin-bottom: 15px;
+        }
+    }
+
+    &__image {
+        position: relative;
+        flex: 0 0 100px;
+        height: 100px;
+
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__body {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 10px;
+    }
+
+    &__title {
+        font-weight: 600;
+        transition: color 0.3s ease 0s;
+        margin-bottom: 5px;
+        transition: color 0.3s ease 0s;
+
+        @media (any-hover: hover) {
+            &:hover {
+                color: $primaryColor;
+            }
+        }
+    }
+
+    &__quantity {
+        font-size: 14px;
+        margin-bottom: 3px;
+    }
+
+    &__quantity-num {
+
+    }
+
+    &__delete {
+        color: red;
+        font-size: 14px;
+        text-decoration: underline;
+        text-decoration-color: transparent;
+        transition: text-decoration-color 0.3s ease 0s;
+
+        @media (any-hover: hover) {
+            &:hover {
+                text-decoration-color: red;
+            }
+        }
+    }
+}
+
+.account {
+
+    &__avatar {
+        border-radius: 50%;
+        overflow: hidden;
+        @include adaptiveValue("width", 30px, 40px);
+        @include adaptiveValue("height", 30px, 40px);
+    }
+}
+
+.burger {
+    display: block;
+	position: relative;
+    top: -3px;
+	flex: 0 0 30px;
+	height: 20px;
+	z-index: 5;
+    background-color: transparent;
+	cursor: pointer;
+
+    @media (min-width: $mobile) {
+        display: none;
+    }
+
+    &__stripe {
+        position: absolute;
+        top: calc(50% - 1px);
+        left: 0px;
+        width: 100%;
+        height: 2px;
+        background-color: #262F56;
+        pointer-events: none;
+        transition: all 0.3s ease 0s;
+
+        @media (any-hover: hover) {
+            .burger:hover & {
+                background-color: $primaryColor;
+            }
+        }
+
+        &:first-child {
+            top: 0px;
+        }
+
+        &:last-child {
+            top: auto;
+            bottom: 0px;
+        }
+    }
+
+    &_active {
+
+        .burger__stripe {
+            transform: scale(0);
+
+            &:first-child {
+                transform: rotate(-45deg);
+                top: calc(50% - 1px);
+            }
+
+            &:last-child {
+                transform: rotate(45deg);
+                bottom: calc(50% - 1px);
+            }
+        }
+    }
+}

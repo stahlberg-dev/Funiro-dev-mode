@@ -1,0 +1,33 @@
+@use "sass:math";
+
+$fontFamily: gilroy;
+$fontSize: 16px;
+$mainColor: #3A3A3A;
+$textLightColor: #898989;
+$textDarkColor: #616161;
+$primaryColor: #E89F71;
+$newColor: #2EC1AC;
+$discountColor: #E97171;
+
+$maxWidth: 1440px;
+$minWidth: 320px;
+$maxContentWidth: 1240px;
+$containerPadding: 30px;
+
+$maxContainerWidth: $maxContentWidth + $containerPadding; 
+
+$pc: $maxContainerWidth;
+$tablet: 991.98px;
+$mobile: 767.98px;
+$smallMobile: 479.98px;
+
+@import "basic_components/reset.scss";
+@import "basic_components/functions.scss";
+@import "fonts.scss";
+@import "basic_components/mixins.scss";
+@import "basic_components/common_styles.scss";
+@import "../../node_modules/swiper/swiper.scss";
+@import "header.scss";
+@import "footer.scss";
+@import "main_page.scss";
+
