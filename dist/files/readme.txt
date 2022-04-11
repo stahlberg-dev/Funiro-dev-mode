@@ -1,1 +1,0 @@
-Funiro - furniture online store.

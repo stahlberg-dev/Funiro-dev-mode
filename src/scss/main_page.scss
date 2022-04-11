@@ -8,6 +8,15 @@
 
     &__products {
     }
+
+    &__rooms {
+    }
+
+    &__tips {
+    }
+
+    &__furniture {
+    }
 }
 
 //----- Main slider --------------------------------------------------------------------------
@@ -71,6 +80,9 @@
 
     &__button {
         display: inline-flex;
+        width: 100%;
+        @include adaptiveValue("height", 45px, 78px);
+        @include adaptiveValue("font-size", 16px, 20px);
 
         @media (min-width: $tablet) {
             display: none;
@@ -116,6 +128,9 @@
 
     &__button {
         display: none;
+        width: 100%;
+        @include adaptiveValue("height", 45px, 78px);
+        @include adaptiveValue("font-size", 16px, 20px);
 
         @media (min-width: $tablet) {
             display: inline-flex;
@@ -247,46 +262,25 @@
 
         @media (min-width: $tablet) {
             display: grid;
+            grid-template-columns: repeat(2, 48px);
+            column-gap: 8px;
         }
     }
-}
 
-.slider-arrows {
-    grid-template-columns: repeat(2, 48px);
-    column-gap: 8px;
-
-    &__btn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    &__arrow-button {
         height: 48px;
-        border-radius: 50%;
-        background-color: rgba(232, 159, 113, 0.4);
-        stroke: $primaryColor;
-        transition: background-color 0.3s ease 0s,
-                    stroke 0.3s ease 0s;
 
-        @media (any-hover: hover) {
-            &:hover {
-                background-color: $primaryColor;
-                stroke: #FFF;
+        @media (min-width: $tablet) {
+            background-color: rgba(232, 159, 113, 0.4);
+            stroke: $primaryColor;
+
+            @media (any-hover: hover) {
+                &:hover {
+                    background-color: $primaryColor;
+                    stroke: #FFF;
+                }
             }
         }
-
-        &_prev {
-        }
-
-        &_next {
-            transform: rotate(180deg);
-        }
-    }
-
-    &__icon {
-        display: block;
-        width: 24px;
-        height: 24px;
-        fill: transparent;
-        pointer-events: none;
     }
 }
 
@@ -349,7 +343,7 @@
 
 //-------------------------------------------------------------------------------------------
 
-//----- Products --------------------------------------------------------------------------
+//----- Products ----------------------------------------------------------------------------
 
 .products {
     @include adaptiveValue("padding-bottom", 30px, 44px);
@@ -557,6 +551,484 @@
         width: 24px;
         height: 24px;
         fill: transparent;
+    }
+}
+
+//-------------------------------------------------------------------------------------------
+
+//----- Rooms -------------------------------------------------------------------------------
+
+.rooms {
+    background-color: #FCF8F3;
+    @include adaptiveValue("padding-top", 30px, 44px);
+    @include adaptiveValue("padding-bottom", 30px, 44px);
+
+    &__container {
+        @media (min-width: $tablet) {
+            display: flex;
+        }
+    }
+
+    &__body {
+        flex: 0 0 math.div(465px, $maxContentWidth) * 100%;
+        align-self: center;
+        position: relative;
+        z-index: 5;
+        margin-bottom: 30px;
+
+        @media (min-width: $tablet) {
+            @include adaptiveValue("padding-right", 30px, 80px);
+            margin-bottom: 0;
+        }
+    }
+
+    &__title {
+
+        &:not(:last-child) {
+            @include adaptiveValue("margin-bottom", 5px, 8px);
+        }
+        text-align: left;
+    }
+
+    &__text {
+
+        &:not(:last-child) {
+            margin-bottom: 24px;
+        }
+    }
+
+    &__button {
+        display: inline-flex;
+        min-width: 180px;
+        height: 48px;
+    }
+
+    &__slider {
+        flex: 1 1 auto;
+        min-width: $minWidth;
+        align-self: flex-start;
+        margin: 0 -15px;
+
+        @media (min-width: $smallMobile) {
+            margin: 0;
+        }
+    }
+}
+
+.slider-rooms {
+    position: relative;
+
+    &__body {
+        position: relative;
+        overflow: visible;
+
+        &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100%;
+            z-index: 2;
+            background-color: #FCF8F3;
+            transform: translate(-100%, 0px);
+        }
+    }
+
+    &__slider-wrapper {
+    }
+
+    &__slide {
+        position: relative;
+        width: 100%;
+
+        @media (min-width: $smallMobile) {
+            width: 372px;
+        }
+        @include adaptiveValue("height", 400px, 585px);
+        overflow: hidden;
+    }
+
+    &__image {
+        position: relative;
+        height: 100%;
+
+        @media (min-width: $mobile) {
+            height: 83%;
+
+            .swiper-slide-active & {
+                height: 100%;
+            }
+        }
+        transition: height 0.8s ease 0s;
+    }
+
+    &__photo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &__content {
+        position: absolute;
+        @include adaptiveValue("left", 15px, 24px);
+        @include adaptiveValue("bottom", 15px, 24px);
+        max-width: 240px;
+        @include adaptiveValue("padding", 15px, 32px);
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    &__label-arrow {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 48px;
+        height: 48px;
+        transform: translate(100%, 0px);
+        background-color: $primaryColor;
+        fill: #FFF;
+    }
+
+    &__label {
+    }
+
+    &__title {
+        @include adaptiveValue("font-size", 24px, 28px);
+        font-weight: 600;
+    }
+
+    &__arrows {
+        display: none;
+
+        @media (min-width: $smallMobile) {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            top: 50%;
+            transform: translate(0px, -50%);
+            left: 24px;
+            width: calc(100% - 48px);
+            z-index: 5;
+        }
+
+        @media (min-width: calc($pc + 48px)) {
+            left: -24px;
+            width: calc(100% + 48px);
+        }
+    }
+
+    &__arrow-button {
+        
+        @media (min-width: $smallMobile) {
+            flex: 0 0 48px;
+            height: 48px;
+            background-color: #FFF;
+            box-shadow: 0px 4px 14px 1px rgba(0, 0, 0, 0.16);
+            stroke: $primaryColor;
+
+            @media (any-hover: hover) {
+                &:hover {
+                    background-color: $primaryColor;
+                    stroke: #FFF;
+                }
+            }
+        }
+    }
+
+    &__dots {
+        justify-content: center;
+        z-index: 10;
+        padding-top: 15px;
+
+        @media (min-width: $mobile) {
+            position: absolute;
+            bottom: 30px;
+            left: 396px;
+            width: 100%;
+            justify-content: normal;
+            padding-top: 0;
+        }
+    }
+}
+
+.label-slider {
+    display: grid;
+    grid-template-columns: auto 27px auto;
+    gap: 8px;
+    justify-content: start;
+    align-items: center;
+
+    &:not(:last-child) {
+        @include adaptiveValue("margin-bottom", 5px, 8px);
+    }
+    color: $textDarkColor;
+
+    &__number {
+    }
+
+    &__line {
+        height: 1px;
+        background-color: $textDarkColor;
+    }
+
+    &__text {
+    }
+}
+
+//-------------------------------------------------------------------------------------------
+
+//----- Tips --------------------------------------------------------------------------------
+
+.tips {
+    @include adaptiveValue("padding-top", 30px, 44px);
+    @include adaptiveValue("padding-bottom", 30px, 44px);
+
+    &__container {
+    }
+
+    &__title {
+    }
+
+    &__slider {
+        position: relative;
+    }
+}
+
+.slider-tips {
+
+    &__body {
+        overflow: hidden;
+        @include adaptiveValue("margin-left", -15px, -32px);
+        @include adaptiveValue("margin-right", -15px, -32px);
+        @include adaptiveValue("padding", 15px, 32px);
+    }
+
+    &__slider-wrapper {
+        align-items: stretch;
+    }
+
+    &__slide {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        transition: box-shadow 0.3s ease 0s;
+
+        @media (any-hover: hover) {
+
+            &:hover {
+                box-shadow: 0 0 32px rgba(97, 97, 97, 0.2);
+            }
+        }
+    }
+
+    &__image {
+        position: relative;
+        padding-bottom: calc(251px / 391px * 100%);
+    }
+
+    &__photo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &__content {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+
+    &__title {
+        flex: 1 1 auto;
+
+        &:not(:last-child) {
+            @include adaptiveValue("margin-bottom", 6px, 8px);
+        }
+        line-height: 1.2;
+        @include adaptiveValue("font-size", 18px, 24px);
+        font-weight: 600;
+        transition: color 0.3s ease 0s;
+
+        @media (any-hover: hover) {
+
+            &:hover {
+                color: $primaryColor;
+            }
+        }
+    }
+
+    &__text {
+        font-size: 14px;
+        color: $textLightColor;
+    }
+
+    &__arrows {
+        display: none;
+
+        @media (min-width: $smallMobile) {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            top: 50%;
+            transform: translate(0px, -50%);
+            left: 24px;
+            width: calc(100% - 48px);
+            z-index: 5;
+        }
+
+        @media (min-width: calc($pc + 48px)) {
+            left: -24px;
+            width: calc(100% + 48px);
+        }
+    }
+
+    &__arrow-button {
+        @media (min-width: $smallMobile) {
+            flex: 0 0 48px;
+            height: 48px;
+            background-color: #FFF;
+            box-shadow: 0px 4px 14px 1px rgba(0, 0, 0, 0.16);
+            stroke: $primaryColor;
+
+            @media (any-hover: hover) {
+                &:hover {
+                    background-color: $primaryColor;
+                    stroke: #FFF;
+                }
+            }
+        }
+    }
+
+    &__dots {
+        @include adaptiveValue("padding-top", 2px, 8px);
+        justify-content: center;
+    }
+}
+
+//-------------------------------------------------------------------------------------------
+
+//----- Furniture ---------------------------------------------------------------------------
+
+.furniture {
+    @include adaptiveValue("padding-bottom", 40px, 85px);
+
+    &__container {
+    }
+
+    &__label {
+        @include adaptiveValue("margin-bottom", 6px, 8px);
+        text-align: center;
+        @include adaptiveValue("font-size", 16px, 20px);
+        color: $textDarkColor;
+    }
+
+    &__title {
+        @include adaptiveValue("margin-bottom", 18px, 32px);
+    }
+
+    &__body {
+        position: relative;
+        padding-bottom: 7px;
+
+        @media (any-hover: none) {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+
+            &::-webkit-scrollbar {
+                height: 3px;
+                background-color: #F4F5F7
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: $primaryColor;
+            }
+        }
+    }
+
+    &__items {
+        display: grid;
+        grid-template-columns: auto;
+        grid-auto-flow: column;
+        align-items: center;
+        gap: 16px;
+
+        @media (any-hover: hover) {
+            justify-content: center;
+        }
+    }
+
+    &__column {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        margin: 0 -8px;
+
+        &:first-child {
+            justify-content: flex-end;
+        }
+    }
+
+    &__row {
+        display: inline-grid;
+        grid-template-columns: auto;
+        grid-auto-flow: column;
+        gap: 16px;
+        padding: 0 8px;
+        &:not(:last-child) {
+            margin-bottom: 16px;
+        }
+    }
+}
+
+.row-furniture {
+
+    &_pos_left-top {
+        justify-content: end;
+        align-items: end;
+    }
+
+    &_pos_left-bottom {
+        justify-content: end;
+        align-items: start;
+    }
+
+    &_pos_center {
+        display: block;
+    }
+
+    &_pos_right-top {
+        justify-content: start;
+        align-items: end;
+    }
+
+    &_pos_right-bottom {
+        justify-content: start;
+        align-items: start;
+    }
+
+    &__item {
+    }
+
+    &__photo {
+        display: block;
+
+        @media (any-hover: hover) {
+            filter: grayscale(1);
+            transition: all 0.5s ease 0s;
+
+            &:hover {
+                filter: grayscale(0);
+            }
+        }
     }
 }
 

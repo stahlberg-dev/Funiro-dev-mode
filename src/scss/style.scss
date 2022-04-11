@@ -17,9 +17,9 @@ $containerPadding: 30px;
 $maxContainerWidth: $maxContentWidth + $containerPadding; 
 
 $pc: $maxContainerWidth;
-$tablet: 991.98px;
-$mobile: 767.98px;
-$smallMobile: 479.98px;
+$tablet: 992.02px;
+$mobile: 768.02px;
+$smallMobile: 480.02px;
 
 @import "basic_components/reset.scss";
 @import "basic_components/functions.scss";
@@ -27,6 +27,7 @@ $smallMobile: 479.98px;
 @import "basic_components/mixins.scss";
 @import "basic_components/common_styles.scss";
 @import "../../node_modules/swiper/swiper.scss";
+@import '../../node_modules/baguettebox.js/src/baguetteBox.scss';
 @import "header.scss";
 @import "footer.scss";
 @import "main_page.scss";

@@ -32,10 +32,7 @@ body {
 .shop-button {
     justify-content: center;
     align-items: center;
-    width: 100%;
-    @include adaptiveValue("height", 45px, 78px);
     background-color: $primaryColor;
-    @include adaptiveValue("font-size", 16px, 20px);
     font-weight: 600;
     color: #FFF;
     transition: background-color 0.3s ease 0s;
@@ -72,6 +69,35 @@ body {
 
     span {
         pointer-events: none;
+    }
+}
+
+.slider-arrows {
+    pointer-events: none;
+
+    &__btn {
+        pointer-events: auto;
+
+        @media (min-width: $smallMobile) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            transition: background-color 0.3s ease 0s,
+                        stroke 0.3s ease 0s;
+        }
+    }
+
+    &__icon {
+        display: block;
+        width: 24px;
+        height: 24px;
+        fill: transparent;
+        pointer-events: none;
+
+        .slider-arrows__btn_next & {
+            transform: rotate(180deg);
+        }
     }
 }
 
